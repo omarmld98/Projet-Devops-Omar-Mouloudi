@@ -1,0 +1,6 @@
+prod_user: omar2
+prod_db_name: db_omar2
+mysql_prod_pass: omar123
+stag_user: omar1
+stag_db_name: db_omar1
+mysql_stag_pass: omar123

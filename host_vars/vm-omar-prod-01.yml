@@ -1,0 +1,1 @@
+hostname: "omar-{{ stage }}-01"

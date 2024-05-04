@@ -1,0 +1,29 @@
+- name: Installaion de Nginx serveur
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+  become: yes
+
+- name: Nginx configuration
+  ansible.builtin.copy:
+    src: files/nginx/nginx.conf
+    dest: /etc/nginx/conf.d/nginx.conf # Replace the main nginx.conf file
+  become: yes
+  notify:
+    - restart_nginx
+
+- name: Creation de /srv/app
+  ansible.builtin.file:
+    path: /srv/app
+    state: directory
+    owner: www-data
+    mode: "0755"
+  become: yes
+
+- name: deploiement de page php
+  ansible.builtin.copy:
+    src: files/php_app/index.php
+    dest: /srv/app/index.php
+    owner: www-data
+    mode: "0644"
+  become: yes

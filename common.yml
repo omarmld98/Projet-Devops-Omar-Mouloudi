@@ -1,0 +1,10 @@
+- name: Mise a jour du cache
+  ansible.builtin.apt:
+    update_cache: yes
+  become: yes
+  when: ansible_distribution == "Debian"
+
+- name: Definir a nom d'hote
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+  become: yes

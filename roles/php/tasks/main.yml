@@ -1,0 +1,19 @@
+- name: Installation de PHP-FPM
+  ansible.builtin.apt:
+    name: php-fpm
+    state: present
+  become: yes
+
+- name: PHP-FPM  Configuration
+  ansible.builtin.template:
+    src: "app.ini.j2"
+    dest: "/etc/php/8.2/fpm/app.ini"
+  become: yes
+  notify:
+    - restart_php-fpm
+
+- name: Installation PHP MySQL
+  ansible.builtin.apt:
+    name: php-mysql
+    state: present
+  become: yes
